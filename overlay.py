@@ -515,10 +515,14 @@ class CommunicationMenu(QWidget):
         threading.Timer(0.1, play_animation).start()
     
     def type_in_chat(self, message):
-        """Type a message in Valorant all chat"""
+        """Type a message in Valorant all chat using clipboard paste"""
         import time
+        import pyperclip
         
         def do_type():
+            # Copy message to clipboard
+            pyperclip.copy(message)
+            
             # Press Shift+Enter to open all chat - hold shift while pressing enter
             self.keyboard_controller.press(keyboard.Key.shift)
             time.sleep(0.01)  # Small delay to ensure shift is registered
@@ -529,8 +533,12 @@ class CommunicationMenu(QWidget):
             self.keyboard_controller.release(keyboard.Key.shift)
             time.sleep(0.03)
             
-            # Type the message
-            self.keyboard_controller.type(message)
+            # Paste the message with Ctrl+V
+            self.keyboard_controller.press(keyboard.Key.ctrl)
+            self.keyboard_controller.press('v')
+            self.keyboard_controller.release('v')
+            self.keyboard_controller.release(keyboard.Key.ctrl)
+            time.sleep(0.02)
             
             # Press Enter to send
             self.keyboard_controller.press(keyboard.Key.enter)

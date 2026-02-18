@@ -2,7 +2,7 @@
   "animations": {
     "Truck": {
       "skip_frames": 5,
-      "frame_delay": 0.5
+      "frame_delay": 0.7999999999999999
     }
   }
 }
