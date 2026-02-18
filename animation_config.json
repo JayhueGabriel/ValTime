@@ -1,0 +1,8 @@
+{
+  "animations": {
+    "Truck": {
+      "skip_frames": 5,
+      "frame_delay": 0.5
+    }
+  }
+}
